@@ -1,4 +1,4 @@
-module github.com/iamBharatManral/go-kvstore
+module kv-store.thelogguy.dev
 
 go 1.20
 

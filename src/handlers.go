@@ -3,8 +3,8 @@ package main
 import (
 	"errors"
 	"github.com/gorilla/mux"
-	"github.com/iamBharatManral/go-kvstore/store"
 	"io"
+	"kv-store.thelogguy.dev/internal/store"
 	"log"
 	"net/http"
 )

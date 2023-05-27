@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/iamBharatManral/go-kvstore/store"
-	"github.com/iamBharatManral/go-kvstore/transaction"
 	_ "github.com/lib/pq"
+	"kv-store.thelogguy.dev/internal/store"
+	"kv-store.thelogguy.dev/internal/transaction"
 	"log"
 	"net/http"
 )
