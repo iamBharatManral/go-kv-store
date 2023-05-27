@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/iamBharatManral/go-kvstore/store"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -22,7 +23,9 @@ func PutHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	logger.WritePut(key, string(value))
 	w.WriteHeader(http.StatusCreated)
+	log.Printf("PUT key=%s value=%s\n", key, string(value))
 }
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,6 +38,7 @@ func GetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Write([]byte(value))
+	log.Printf("GET key=%s\n", key)
 }
 
 func DeleteHandler(w http.ResponseWriter, r *http.Request) {
@@ -46,5 +50,7 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
+	logger.WriteDelete(key)
 	w.WriteHeader(http.StatusOK)
+	log.Printf("DELETE key=%s\n", key)
 }
