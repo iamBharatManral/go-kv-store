@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/iamBharatManral/go-kvstore/store"
 	"github.com/iamBharatManral/go-kvstore/transaction"
+	_ "github.com/lib/pq"
 	"log"
 	"net/http"
 )
@@ -13,7 +14,13 @@ var logger transaction.TransactionLogger
 
 func initializeTransactionLog() error {
 	var err error
-	logger, err = transaction.NewFileTransactionLogger("transaction.log")
+	//logger, err = transaction.NewFileTransactionLogger("transaction.log")
+	logger, err = transaction.NewPostgresTransactionLogger(transaction.PostgresDBParams{
+		Host:     "localhost",
+		DBName:   "kvs",
+		User:     "test",
+		Password: "hunter2",
+	})
 	if err != nil {
 		return fmt.Errorf("failed to create event logger: %w", err)
 	}
